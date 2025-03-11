@@ -8,6 +8,9 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 // https://vite.dev/config/
 export default defineConfig({
   base: '/blog/',
+  build: {
+    outDir: 'dist',
+  },
   plugins: [vue(), vueJsx(), vueDevTools()],
   resolve: {
     alias: {
