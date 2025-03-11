@@ -7,9 +7,9 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/blog/',
   build: {
-    outDir: 'docs',
+    outDir: 'dist',
   },
   plugins: [vue(), vueJsx(), vueDevTools()],
   resolve: {
