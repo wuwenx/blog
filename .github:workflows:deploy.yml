@@ -1,24 +1,27 @@
-# .github/workflows/deploy.yml
-name: Deploy
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ['main'] # 触发分支
+    branches:
+      - main # 或你使用的分支名称
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # 获取完整的历史记录，用于生成正确的版本号
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 22 # 根据你的项目需求选择合适的 Node.js 版本
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build project
         run: npm run build
@@ -27,4 +30,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist # 构建输出目录
+          publish_dir: ./dist # 构建输出目录，默认是 Vite 的 dist 文件夹
+          publish_branch: gh-pages # 部署到 gh-pages 分支
