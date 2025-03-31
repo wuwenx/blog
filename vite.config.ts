@@ -10,7 +10,7 @@ console.log(process.env.NODE_ENV)
 export default defineConfig({
   base: process.env.NODE_ENV === 'development' ? '/' : '/blog/',
   build: {
-    outDir: 'dist',
+    outDir: 'docs',
   },
   plugins: [vue(), vueJsx(), vueDevTools()],
   resolve: {
