@@ -1,0 +1,10 @@
+- name: Build
+        run: npm run build
+      - name: Debug build output
+        run: |
+          echo "Listing build output directory:"
+          ls -la dist/
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
